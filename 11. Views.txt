@@ -1,0 +1,144 @@
+/* This command creates a view which shows the total sales by each individual app. It uses an inner join to join the tables atblItem and atblMultiItem. It gets the count of the instances that 
+each item has been sold and multiplies this value by each item's price. */
+CREATE VIEW vwTotalItemSales AS
+
+SELECT atblItem.itemID, atblItem.itemName, ((atblItem.itemPrice) * (COUNT(atblMultiItem.itemID))) AS [Total Sales]
+FROM atblMultiItem INNER JOIN atblItem ON atblMultiItem.itemID=atblItem.itemID
+GROUP BY atblItem.itemID, atblItem.itemName, atblItem.itemPrice;
+
+GO
+
+SELECT * FROM vwTotalItemSales;
+
+GO
+
+/* This command creates a view which shows the total sales by each individual app where the payment used was card. It uses 3 inner joins to join the tables atblItem, atblOrder, atblMultiItem and atblPayment.
+ It gets the count of the instances that each item has been sold and multiplies this value by each item's price where the payment type used was card. */
+CREATE VIEW vwTotalCardSales AS
+
+SELECT atblItem.itemID, atblItem.itemName, ((atblItem.itemPrice) * (COUNT(atblMultiItem.itemID))) AS [Total Sales]
+FROM atblMultiItem 
+INNER JOIN atblItem ON atblMultiItem.itemID=atblItem.itemID
+INNER JOIN atblOrder ON  atblMultiItem.orderID=atblOrder.orderID
+INNER JOIN atblPayment ON  atblOrder.paymentID=atblPayment.paymentID
+GROUP BY atblItem.itemID, atblItem.itemName, atblItem.itemPrice, atblPayment.paymentType
+HAVING atblPayment.paymentType = 'Card';
+
+GO
+
+SELECT * FROM vwTotalCardSales;
+
+GO
+
+/* This command creates a view which shows the number of sales from each country before the year 2019.
+ It uses 3 inner joins to join the tables atblItem, atblOrder, atblMultiItem and atblPayment. */
+CREATE VIEW vwSalesCountEachCountryBefore2019 AS
+
+SELECT atblPayment.billingCountry, COUNT(atblMultiItem.itemID) as [Number of Sales]  
+FROM atblMultiItem 
+INNER JOIN atblItem ON atblMultiItem.itemID=atblItem.itemID
+INNER JOIN atblOrder ON  atblMultiItem.orderID=atblOrder.orderID
+INNER JOIN atblPayment ON  atblOrder.paymentID=atblPayment.paymentID
+WHERE atblOrder.orderDate < '2019-01-01'
+GROUP BY atblPayment.billingCountry
+
+GO
+
+SELECT * FROM vwSalesCountEachCountryBefore2019
+
+GO
+
+/* This command creates a view which shows the number of sales and total sales from each country.
+ It uses 3 inner joins to join the tables atblItem, atblOrder, atblMultiItem and atblPayment. */
+CREATE VIEW vwSalesCountandTotalByCountry AS
+
+SELECT atblPayment.billingCountry, COUNT(atblMultiItem.itemID) as [Number of Sales], ((MIN(atblItem.itemPrice)) * (COUNT(atblMultiItem.itemID))) AS [Total Sales]
+FROM atblMultiItem 
+INNER JOIN atblItem ON atblMultiItem.itemID=atblItem.itemID
+INNER JOIN atblOrder ON  atblMultiItem.orderID=atblOrder.orderID
+INNER JOIN atblPayment ON  atblOrder.paymentID=atblPayment.paymentID
+GROUP BY atblPayment.billingCountry
+
+GO
+
+SELECT * FROM vwSalesCountandTotalByCountry;
+
+GO
+
+/* This command creates a view which shows the average age demographic for each app.
+ It uses 3 inner joins to join the tables atblItem, atblOrder, atblMultiItem and atblCustomer. */
+CREATE VIEW vwAverageAgeDemographic AS
+
+Select atblItem.itemName, AVG(Datediff("yyyy",atblCustomer.custDOB,getdate())) as [Average Age] 
+FROM atblMultiItem 
+INNER JOIN atblItem ON atblMultiItem.itemID=atblItem.itemID
+INNER JOIN atblOrder ON  atblMultiItem.orderID=atblOrder.orderID
+INNER JOIN atblCustomer ON  atblOrder.custID=atblCustomer.custID
+GROUP BY atblItem.itemName
+
+GO
+
+SELECT * FROM vwAverageAgeDemographic;
+
+/* This command creates a view which shows the total sales and average age demographic for each app.
+ It uses 3 inner joins to join the tables atblItem, atblOrder, atblMultiItem and atblCustomer. It uses 3 aggregate functions and 2 other functions to get the required data. */
+CREATE VIEW vwTotalSalesandAgeDemographic AS
+
+Select atblItem.itemName, ((MIN(atblItem.itemPrice)) * (COUNT(atblMultiItem.itemID))) AS [Total Sales], AVG(Datediff("yyyy",atblCustomer.custDOB,getdate())) as [Average Age] 
+FROM atblMultiItem 
+INNER JOIN atblItem ON atblMultiItem.itemID=atblItem.itemID
+INNER JOIN atblOrder ON  atblMultiItem.orderID=atblOrder.orderID
+INNER JOIN atblCustomer ON  atblOrder.custID=atblCustomer.custID
+GROUP BY atblItem.itemName
+
+GO
+
+SELECT * FROM vwTotalSalesandAgeDemographic;
+
+GO
+
+/* Provides a view of the company's discontinued apps by only showing the fields where 
+an item is inactive i.e discontinued. This can then be checked alongside the amount of sales it generated to see if it should be brought back */
+
+CREATE VIEW vwDiscontAppsAndTheirSales AS
+
+SELECT atblItem.itemID, atblItem.itemName, ((MIN(atblItem.itemPrice)) * (COUNT(atblMultiItem.itemID))) AS [Total Sales]
+
+FROM atblMultiItem INNER JOIN atblItem ON atblMultiItem.itemID=atblItem.itemID
+WHERE atblItem.itemActive = 0
+GROUP BY atblItem.itemID, atblItem.itemName, atblItem.itemPrice;
+
+GO
+
+SELECT * FROM vwDiscontAppsAndTheirSales;
+
+GO
+
+/* Creates a view which shows all the discontinued apps */
+CREATE VIEW vwDiscontApps AS
+
+SELECT atblItem.itemID, atblItem.itemName
+
+FROM atblItem 
+WHERE atblItem.itemActive = 0
+GROUP BY atblItem.itemID, atblItem.itemName
+
+GO
+
+SELECT * FROM vwDiscontApps;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

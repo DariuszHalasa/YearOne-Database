@@ -1,0 +1,64 @@
+/* Creates a table called atblPayment which holds information about the payment type that was used for the transaction 
+of a specific app */
+CREATE TABLE atblPayment
+(
+paymentID int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+paymentType nvarchar(25) NOT NULL,
+paypalEmail nvarchar(50),
+cardNo nvarchar(16),
+cardExpiry date,
+billingAddress nvarchar(50) NOT NULL,
+billingCity nvarchar(20) NOT NULL,
+billingPostcode nvarchar(10) NOT NULL,
+billingCountry nvarchar(40) NOT NULL
+);
+
+/* Creates a table called atblItem which is used to store the items for sale (apps) */
+CREATE TABLE atblItem
+(
+itemID int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+itemName nvarchar(50) NOT NULL,
+itemBrand nvarchar(50) NOT NULL,
+itemPrice money NOT NULL,
+itemActive bit NOT NULL
+);
+
+
+/* Creates a table called atblCustomer which holds information about each customer that chooses to purchase and app */
+CREATE TABLE atblCustomer
+(
+custID int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+custForename nvarchar(30) NOT NULL,
+custSurname nvarchar(30) NOT NULL,
+custTitle nvarchar(5) NOT NULL,
+custDOB date NOT NULL,
+custPhoneNo nvarchar(15) NOT NULL,
+custEmail nvarchar(30) NOT NULL,
+custActive bit NOT NULL
+);
+
+
+/* Creates a table called atblOrder which holds information about each order made by each customer */
+CREATE TABLE atblOrder
+(
+orderID int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+custID int NOT NULL,
+paymentID int NOT NULL,
+orderDate date NOT NULL
+
+CONSTRAINT OrderFK1 FOREIGN KEY (custID) REFERENCES atblCustomer(custID) ,
+CONSTRAINT OrderFK2 FOREIGN KEY (paymentID) REFERENCES atblPayment(paymentID) 
+);
+
+
+/* Creates a table called atblMultiItem which removes the problem of having a many-to-many relationship between the order and item tables */
+CREATE TABLE atblMultiItem
+( 
+orderID int NOT NULL,
+itemID int NOT NULL,
+licence nvarchar(15) NOT NULL
+
+CONSTRAINT multiItemFK1 FOREIGN KEY (orderID) REFERENCES atblOrder(orderID), 
+CONSTRAINT multiItemFK2 FOREIGN KEY (itemID) REFERENCES atblItem(itemID),
+PRIMARY KEY(orderID, itemID)  
+);

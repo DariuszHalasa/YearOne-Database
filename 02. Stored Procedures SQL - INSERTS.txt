@@ -1,0 +1,120 @@
+/* Creates a stored procedure which is used to insert values into atblCustomer */
+CREATE PROCEDURE spNewCustomer
+@myCustForename nvarchar(30), @myCustSurname nvarchar(30),
+@myCustTitle nvarchar(5), @myCustDOB date, @myCustPhoneNo nvarchar(15),
+@myCustEmail nvarchar(50), @myCustActive bit
+
+
+AS
+INSERT INTO atblCustomer
+(
+custForename, custSurname, custTitle, custDOB,  custPhoneNo,
+custEmail, custActive
+)
+
+VALUES
+(
+@myCustForename, @myCustSurname, @myCustTitle, @myCustDOB , @myCustPhoneNo, 
+@myCustEmail, @myCustActive 
+);
+
+GO
+
+/* Creates a stored procedure which is used to insert values into atblItem */
+CREATE PROCEDURE spNewItem
+@myItemName nvarchar(50), @myItemBrand nvarchar(50),
+@myItemPrice money, @myItemActive bit
+
+AS
+INSERT INTO atblItem
+(
+itemName, itemBrand, itemPrice, itemActive
+)
+
+VALUES
+(
+@myItemName, @myItemBrand, @myItemPrice, 1
+);
+
+GO
+
+/* Creates a stored procedure which is used to insert values into atblPayment when the payment type used was 'Card' */
+CREATE PROCEDURE spNewPaymentCard
+@myPaymentType nvarchar(25), @myCardNo nvarchar(16),
+@myCardExpiry date, @myBillingAddress nvarchar(50),
+@myBillingCity nvarchar(20), @myBillingPostcode nvarchar(10),
+@myBillingCountry nvarchar(40)
+
+AS
+INSERT INTO atblPayment
+(
+paymentType, cardNo, cardExpiry, billingAddress, billingCity, billingPostcode,  billingCountry
+)
+
+VALUES
+(
+'Card', @myCardNo, @myCardExpiry, @myBillingAddress, 
+@myBillingCity, @myBillingPostcode, @myBillingCountry
+);
+
+
+GO
+
+/* Creates a stored procedure which is used to insert values into atblPayment when the payment type used was 'Paypal' */
+CREATE PROCEDURE spNewPaymentPaypal
+@myPaymentType nvarchar(15), @myPaypalEmail nvarchar(15), @myBillingAddress nvarchar(50),
+@myBillingCity nvarchar(20), @myBillingPostcode nvarchar(10),
+@myBillingCountry nvarchar(40)
+
+
+AS
+INSERT INTO atblPayment
+(
+paymentType, paypalEmail, billingAddress, billingCity,  billingPostcode, billingCountry
+) 
+
+
+VALUES
+(
+'Paypal', @myPaypalEmail, @myBillingAddress, 
+@myBillingCity, @myBillingPostcode, @myBillingCountry
+);
+
+GO
+
+/* Creates a stored procedure which is used to insert values into atblOrder */
+CREATE PROCEDURE spNewOrder
+@myCustID int, @myPaymentID int,
+@myOrderDate date
+
+AS
+INSERT INTO atblOrder
+(
+custID, paymentID, orderDate
+)
+
+VALUES
+(
+@myCustID, @myPaymentID, @myOrderDate
+);
+
+GO
+
+/* Creates a stored procedure which is used to insert values into atblMultiItem */
+CREATE PROCEDURE spNewMultiItem
+@myOrderID int, @myItemID int,
+@myLicense nvarchar(15)
+
+AS
+INSERT INTO atblMultiItem
+(
+orderID, itemID, licence
+)
+
+VALUES
+(
+@myOrderID, @myItemID, @myLicense
+);
+
+
+

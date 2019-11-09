@@ -1,0 +1,23 @@
+EXEC spNewItem 'Veribet', 'Livetube', 3.99, 1; 
+EXEC spNewItem 'Zoolab', 'Digitube', 1.99, 1; 
+EXEC spNewItem 'Tampflex', 'Yakidoo', 2.50, 1; 
+EXEC spNewItem 'Bigtax', 'Tavu', 5.99, 1; 
+EXEC spNewItem 'Keylex', 'Podcat', 7.99, 1; 
+EXEC spNewItem 'Toughjoyfax', 'Fiveclub', 1.99, 1; 
+EXEC spNewItem 'Vagram', 'Skyvu', 2.99, 1; 
+EXEC spNewItem 'Voltsillam', 'Cogibox', 2.49, 1; 
+EXEC spNewItem 'Happy Birds', 'Kwilith', 6.79, 1; 
+EXEC spNewItem 'Bird Crush', 'Skaboo', 4.55, 1; 
+
+EXEC spNewItem 'Battle Trees', 'Livetube', 3.99, 1; 
+EXEC spNewItem 'Phenom Train', 'Podcat', 1.99, 1; 
+EXEC spNewItem 'Valley', 'Yakidoo', 2.50, 1; 
+EXEC spNewItem 'Keytax', 'Podcat', 5.99, 1; 
+EXEC spNewItem 'Snowflake Room', 'Podcat', 7.99, 1; 
+EXEC spNewItem 'AskMe Room', 'Fiveclub', 1.99, 1; 
+EXEC spNewItem 'Rhino Trees', 'Skyvu', 2.99, 1; 
+EXEC spNewItem 'Support Cat', 'Yakidoo', 2.49, 1; 
+EXEC spNewItem 'Blossom Cat', 'Yakidoo', 6.79, 1; 
+EXEC spNewItem 'Solutions Cat', 'Skaboo', 4.55, 1; 
+
+SELECT * FROM atblItem;

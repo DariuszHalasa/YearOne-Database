@@ -1,0 +1,59 @@
+/* Creates a new table to track changes made to atblCustomer along with a timestamp */
+CREATE TABLE atblCustomerAudit
+(
+customerID int NOT NULL,
+customerForename nvarchar(30) NOT NULL,
+updateType nvarchar(10) NOT NULL,
+recordTimestamp datetime NOT NULL
+
+PRIMARY KEY(customerID, recordTimestamp)
+);
+
+GO
+
+/* Creates a new table to track changes made to atblItem along with a timestamp */
+CREATE TABLE atblItemAudit
+(
+itemID int NOT NULL,
+itemName nvarchar(50) NOT NULL,
+updateType nvarchar(10) NOT NULL,
+recordTimestamp datetime NOT NULL
+
+PRIMARY KEY(itemID, recordTimestamp)
+);
+
+GO
+
+/* Creates a trigger which runs when an INSERT query is executed on atblCustomer */
+CREATE TRIGGER trgTrackCustTableUpdate ON atblCustomer
+FOR INSERT 
+
+AS
+DECLARE @NewCustomerID int,
+@NewCustomerForename varchar(30)
+SET @NewCustomerID = (SELECT custID FROM inserted)
+SET @NewCustomerForename = (SELECT custForename FROM inserted)
+
+
+
+INSERT INTO atblCustomerAudit(customerID, customerForename, updateType, recordTimestamp)
+VALUES (@NewCustomerID, @NewCustomerForename, 'Insert', GETDATE());
+
+GO
+
+/* Creates a trigger which runs when an INSERT query is executed on atblItem */
+CREATE TRIGGER trgTrackItemTableUpdate ON atblItem
+FOR INSERT 
+
+AS
+DECLARE @NewItemID int,
+@NewItemName varchar(50)
+SET @NewItemID = (SELECT itemID FROM inserted)
+SET @NewItemName = (SELECT itemName FROM inserted)
+
+
+
+INSERT INTO atblItemAudit(itemID, itemName, updateType, recordTimestamp)
+VALUES (@NewItemID, @NewItemName, 'Insert', GETDATE());
+
+GO

@@ -1,0 +1,121 @@
+/* Creates a stored procedure which allows updating a customer's details in table atblCustomer when executed and with parameters provided */
+CREATE PROCEDURE spUpdateCustomer
+@myCustID int,
+@myCustForename nvarchar(30),
+@myCustSurname nvarchar(30),
+@myCustTitle nvarchar(5),
+@myCustDOB date,
+@myCustPhoneNo nvarchar(30),
+@myCustEmail nvarchar(50)
+
+AS
+UPDATE atblCustomer 
+SET custForename=@myCustForename,
+custSurname = @myCustSurname,
+custTitle = @myCustTitle,
+custDOB = @myCustDOB,
+custPhoneNo = @myCustPhoneNo,
+custEmail = @myCustEmail
+
+WHERE custID=@myCustID;
+
+GO
+
+/* Creates a stored procedure which allows updating product details in table atblItem when executed with parameters provided */
+CREATE PROCEDURE spUpdateItem
+@myItemID int,
+@myItemName nvarchar(50),
+@myItemBrand nvarchar(50),
+@myItemPrice money
+
+
+AS
+UPDATE atblItem 
+SET itemName = @myItemName,
+itemBrand = @myItemBrand,
+itemPrice = @myItemPrice
+
+WHERE itemID=@myItemID;
+
+GO
+
+/* Creates a stored procedure which allows updating card details in table atblPayment when executed with parameters provided */
+CREATE PROCEDURE spUpdatePaymentCard
+@myPaymentID int,
+@myCardNo nvarchar(30),
+@myCardExpiry date, 
+@myBillingAddress nvarchar(50),
+@myBillingCity nvarchar(20), 
+@myBillingPostcode nvarchar(10),
+@myBillingCountry nvarchar(40)
+
+
+AS
+UPDATE atblPayment
+SET cardNo = @myCardNo,
+cardExpiry = @myCardExpiry,
+billingAddress = @myBillingAddress,
+billingCity = @myBillingCity,
+billingPostcode = @myBillingPostcode,
+billingCountry = @myBillingCountry
+
+WHERE paymentID=@myPaymentID AND paymentType='Card';
+
+GO
+
+/* Creates a stored procedure which allows updating Paypal details in table atblPayment when executed with parameters provided */
+CREATE PROCEDURE spUpdatePaymentPaypal
+
+@myPaymentID int,
+@myPaypalEmail nvarchar(50),
+@myBillingAddress nvarchar(50),
+@myBillingCity nvarchar(20), 
+@myBillingPostcode nvarchar(10),
+@myBillingCountry nvarchar(40)
+
+AS
+UPDATE atblPayment 
+SET paypalEmail=@myPaypalEmail,
+billingAddress = @myBillingAddress,
+billingCity = @myBillingCity,
+billingPostcode = @myBillingPostcode,
+billingCountry = @myBillingCountry
+
+
+WHERE paymentID=@myPaymentID AND paymentType='Paypal';
+
+GO
+
+/* Creates a stored procedure which allows updating licence details in table atblMultiItem when executed with parameters provided */
+CREATE PROCEDURE spUpdateMultiItemLicence
+@myOrderID int,
+@myItemID int,
+@myLicence nvarchar(15)
+
+AS
+UPDATE atblMultiItem 
+SET licence=@myLicence
+
+WHERE orderID=@myOrderID AND itemID=@myItemID;
+
+GO
+
+
+/* Creates a stored procedure which allows updating the order date in table atblOrder when executed with parameters provided */
+CREATE PROCEDURE spUpdateOrderDate
+@myOrderID int,
+@myCustID int,
+@myPaymentID int,
+@myOrderDate date
+
+
+AS
+UPDATE atblOrder 
+SET orderDate=@myOrderDate
+
+
+WHERE orderID=@myOrderID;
+
+GO
+
+

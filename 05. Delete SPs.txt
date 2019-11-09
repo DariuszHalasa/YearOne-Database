@@ -1,0 +1,29 @@
+GO
+
+/* Creates a stored procedure for deleting items from atblItem */
+CREATE PROCEDURE spDeleteItem 
+(
+@myItemID int
+)
+AS
+DELETE FROM atblItem WHERE itemID = @myItemID; 
+
+GO
+
+/* Creates a stored procedure for deleting customers from atblCustomer */
+CREATE PROCEDURE spDeleteCustomer
+(
+@myCustID int
+)
+AS
+DELETE FROM atblCustomer WHERE custID = @myCustID; 
+
+GO
+
+/* Creates a stored procedure for deleting orders from atblOrder */
+CREATE PROCEDURE spDeleteOrder
+(
+@myOrderID int
+)
+AS
+DELETE from atblOrder WHERE orderID = @myOrderID ;

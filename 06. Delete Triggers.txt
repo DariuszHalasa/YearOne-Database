@@ -1,0 +1,31 @@
+GO
+
+/* Creates a trigger that will execute instead of the delete function when an attempt is made to delete a customer from the table
+atblCustomer instead the attribute custActive will be set to 0. This will mean that the specific customer is no longer relevant */
+CREATE TRIGGER trgDeleteCust on atblCustomer
+INSTEAD OF DELETE 
+AS
+
+DECLARE @NewCustID int
+SET @NewCustID = (SELECT custID FROM deleted)
+
+UPDATE atblCustomer SET custActive = 0
+WHERE custID = @NewCustID;
+
+GO
+
+/* Creates a trigger that will execute instead of the delete function when an attempt is made to delete an item from the table
+atblItem instead the attribute itemActive will be set to 0. This will mean the item is no longer sold. */
+CREATE TRIGGER trgDeleteItem on atblItem
+INSTEAD OF DELETE 
+AS
+
+DECLARE @NewItemID int
+SET @NewItemID = (SELECT itemID FROM deleted)
+
+UPDATE atblItem SET itemActive = 0
+WHERE itemID = @NewItemID;
+
+
+
+

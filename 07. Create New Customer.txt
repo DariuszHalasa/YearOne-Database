@@ -1,0 +1,22 @@
+EXEC spNewCustomer 'Lilla', 'De Mendoza', 'Dr', '1994-01-02', '2988502553', 'ldemendoza0@bloglovin.com', 1;
+EXEC spNewCustomer 'Dave', 'Pesic', 'Mr', '1996-02-03', '6846072276', 'dpesic1@privacy.gov.au', 1;
+EXEC spNewCustomer 'Rasia', 'Ferronel', 'Mrs', '1992-05-03', '7006504915', 'rferronel2@netlog.com', 1;
+EXEC spNewCustomer 'Dermot', 'Janku', 'Mr', '1982-02-23', '2988502553', 'djanku3@newsvine.com', 1;
+EXEC spNewCustomer 'Ollie', 'Griffithe', 'Ms', '1968-07-23', '5118557797', 'ogriffithe6@livejournal.com', 1;
+EXEC spNewCustomer 'Janek', 'Bartot', 'Mr', '1998-07-13', '6072159484', 'jbartot7@mashable.com', 1;
+EXEC spNewCustomer 'Sheeree', 'Tearle', 'Mrs', '1976-11-12', '2266486552', 'stearle9@ucoz.com', 1;
+EXEC spNewCustomer 'Brande', 'Rossoni', 'Dr', '1988-01-12', '2266257552', 'brossonij@foxnews.com', 1;
+EXEC spNewCustomer 'Gertrude', 'Solan', 'Ms', '1981-01-05', '2445257552', 'gsolana@reverbnation.com', 1;
+EXEC spNewCustomer 'Jake', 'Toppas', 'Mr', '1983-02-17', '1266257552', 'jtoppasb@nyu.edu', 1;
+EXEC spNewCustomer 'Had', 'Austwick', 'Dr', '1968-03-21', '8266257552', 'haustwickc@hugedomains.com', 1;
+EXEC spNewCustomer 'Archy', 'Crim', 'Mr', '1989-04-26', '0196257552', 'brossonij@foxnews.com', 1;
+EXEC spNewCustomer 'Harmonia', 'McMurthy', 'Mrs', '1998-05-25', '5766257552', 'hmcmurthye@nba.com', 1;
+EXEC spNewCustomer 'Vaughan', 'Danielsson', 'Mrs', '1998-04-22', '7765607552', 'vdanielssonf@ibm.com', 1;
+EXEC spNewCustomer 'Anthe', 'Dei', 'Mr', '1978-03-03', '8766257552', 'adeig@tinyurl.com', 1;
+EXEC spNewCustomer 'Traver', 'Embleton', 'Dr', '1962-05-09', '8866257552', 'tembletonh@clickbank.net', 1;
+EXEC spNewCustomer 'Sascha', 'Gerrels', 'Mr', '1977-06-06', '996678552', 'sgerrelsi@blogs.com', 1;
+EXEC spNewCustomer 'Noelani', 'Trigg', 'Mr', '1978-07-15', '1466257552', 'ntriggk@quantcast.com', 1;
+EXEC spNewCustomer 'Con', 'Schimaschke', 'Mr', '1987-12-11', '1666257552', 'cschimaschkel@shinystat.com', 1;
+EXEC spNewCustomer 'Michaela', 'Vondrak', 'Dr', '1990-12-14', '274557552', 'mvondrakm@miibeian.gov.cn', 1;
+
+SELECT * FROM atblCustomer;

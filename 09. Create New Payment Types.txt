@@ -1,0 +1,24 @@
+EXEC spNewPaymentCard 'Card', '9465363540927080', '2022-01-31', '5309 Clove Plaza', 'Axbridge', 'EH30 9SE', 'USA';
+EXEC spNewPaymentCard 'Card', '5452718447608366', '2021-09-30', '19 Sullivan Court', 'Mex', 'KA15 1HJ', 'Uzbekistan';
+EXEC spNewPaymentCard 'Card', '2406768317607804', '2020-03-31', '0825 Calypso Street', 'Crediton', 'BN3 3WX', 'Singapore';
+EXEC spNewPaymentCard 'Card', '0749317085018253', '2020-04-30', '447 Butterfield Alley', 'Vincennes', 'B70 0PF', 'Andorra';
+EXEC spNewPaymentCard 'Card', '7154163937673654', '2022-05-31', '54700 2nd Junction', 'Dartford', 'DN1 1LL', 'Andorra';
+EXEC spNewPaymentCard 'Card', '2945074093983678', '2022-05-31', '6 Morrow Place', 'Shefford', 'BD18 3RP', 'Malaysia';
+EXEC spNewPaymentCard 'Card', '6030457947677690', '2023-06-30', '9 Little Fleur Lane', 'Chesham', 'RH17 6TE', 'Malaysia';
+EXEC spNewPaymentCard 'Card', '9947963450698980', '2023-07-31', '271 Meadow Vale Circle', 'Windermere', 'LL23 7UU', 'USA';
+EXEC spNewPaymentCard 'Card', '3613618779588322', '2022-04-30', '50 Westerfield Plaza', 'Warwick', 'BB9 6RD', 'USA';
+EXEC spNewPaymentCard 'Card', '4976459669441598', '2021-01-31', '36412 Mendota Pass', 'Dartmouth', 'G43 1BP', 'Monaco';
+EXEC spNewPaymentPaypal 'Paypal', 'jtoppasb@paypal.com', '9 Farragut Lane', 'Mildura', 'IV41 8PG', 'Monaco';
+EXEC spNewPaymentPaypal 'Paypal', 'gsolana@paypal.com', '0976 Wayridge Parkway', 'Klamath Falls', 'TR14 0EZ', 'USA';
+EXEC spNewPaymentPaypal 'Paypal', 'hmcmurthye@paypal.com', '28321 Heath Hill', 'Gladstone', 'EH52 5BS', 'UK';
+EXEC spNewPaymentPaypal 'Paypal', 'vdanielssonf@paypal.com', '9673 Crest Line Crossing', 'Loxton', 'TN11 0ES', 'UK';
+EXEC spNewPaymentPaypal 'Paypal', 'adeig@paypal.com', '7 Anderson Street', 'Dunkirk', 'UB9 6LF', 'UK';
+EXEC spNewPaymentPaypal 'Paypal', 'sgerrelsi@paypal.com', '1732 Farwell Park', 'Windham', 'UB10 9BE', 'Portugal';
+EXEC spNewPaymentPaypal 'Paypal', 'tembletonh@paypal.com', '185 Logan Trail', 'Abington', 'WR6 5DQ', 'Portugal';
+EXEC spNewPaymentPaypal 'Paypal', 'ntriggk@paypal.com', '60739 Huxley Hill', 'Mesa', 'SN11 8YQ', 'UK';
+EXEC spNewPaymentPaypal 'Paypal', 'cschimaschkel@paypal.com', '5 Lake View Road', 'Breckenridge', 'WC1R 4TQ', 'Germany';
+EXEC spNewPaymentPaypal 'Paypal', 'mvondrakm@miibeian.gov.cn', '32 Meadow Valley Center', 'Hope', 'GL6 6SY', 'Germany';
+
+
+SELECT * FROM atblPayment
+
